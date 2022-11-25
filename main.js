@@ -31,3 +31,13 @@ const game = {
 game.init();
 
 
+const items = document.getElementById('items');
+for (let i = 1; i <= 1000; i++) {
+    items.insertAdjacentHTML('beforeend', `<li>${i}</li>`);
+}
+window.addEventListener('scroll', (event) =>{
+    console.log(window.screenY);
+    /*hauteur de la fenêtre : window.screenY*/
+    /*quantité de scroll : document.body.offsetHeight*/
+    /* hauteur du document : scrollHeight*/
+})

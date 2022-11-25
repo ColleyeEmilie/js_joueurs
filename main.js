@@ -1,24 +1,23 @@
-class Player{
-    constructor(nom,score){
-        this.nom = nom;
-        this.score = score;
+class Player {
+    constructor(name) {
+        this.name = name;
+        this.score = 0;
     }
-    newScore(score){
-        return this.score = score+1;
+    incScore() {
+        return this.score++;
     }
 }
-const buttons = document.querySelectorAll('button');
-const joueur1 = new Player('Luana', 0);
-const joueur2 = new Player('Jordan', 0);
+
+const buttons = document.getElementsByClassName('play');
+const players = [
+    new Player('Luana'),
+    new Player('Jordan'),
+];
 
 for (const button of buttons) {
-    button.addEventListener('click', (event)=>{
-        if(event.currentTarget.getElementById === 'button1') {
-            joueur1.newScore(joueur1.score);
-            event.currentTarget.textContent = `Le score de ${joueur1.nom} est de ${joueur1.score}`;
-        } else {
-            joueur2.newScore(joueur2.score);
-            event.currentTarget.textContent = `Le score de ${joueur2.nom} est de ${joueur2.score}`;
-        }
+    button.addEventListener('click', (event) => {
+        const idx = parseInt(event.currentTarget.dataset.play);
+        players[idx].incScore();
+        event.currentTarget.textContent = `Le score de ${players[idx].name} est de ${players[idx].score}`;
     })
 }

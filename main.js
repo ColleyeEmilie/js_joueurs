@@ -4,20 +4,30 @@ class Player {
         this.score = 0;
     }
     incScore() {
-        return this.score++;
+        this.score++;
     }
 }
 
-const buttons = document.getElementsByClassName('play');
-const players = [
-    new Player('Luana'),
-    new Player('Jordan'),
-];
+const game = {
+    buttons : document.getElementsByClassName('play'),
+    players : [new Player('Luana'), new Player('Jordan')],
 
-for (const button of buttons) {
-    button.addEventListener('click', (event) => {
-        const idx = parseInt(event.currentTarget.dataset.play);
-        players[idx].incScore();
-        event.currentTarget.textContent = `Le score de ${players[idx].name} est de ${players[idx].score}`;
-    })
+    init(){
+        this.addEventListener();
+    },
+    addEventListener(){
+        for (const button of this.buttons) {
+            button.addEventListener('click', (event) => {
+                this.play(event)
+            })
+        }
+    },
+    play(event){
+        this.idx = parseInt(event.currentTarget.dataset.play);
+        this.players[this.idx].incScore();
+        event.currentTarget.textContent = `Le score de ${this.players[this.idx].name} est de ${this.players[this.idx].score}`;
+    }
 }
+game.init();
+
+
